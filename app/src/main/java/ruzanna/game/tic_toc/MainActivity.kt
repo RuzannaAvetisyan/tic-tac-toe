@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("g1", firstGamer)
                 intent.putExtra("g2", secondGamer)
                 startActivity(intent)
+                finish()
             }
         }
     }

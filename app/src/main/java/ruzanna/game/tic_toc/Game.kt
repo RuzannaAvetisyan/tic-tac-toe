@@ -24,11 +24,11 @@ class Game : AppCompatActivity()  {
             val g1Name = gamer1.name
             val g2Name = gamer2.name
             var g1Queue = gamer1.queue
-            var g2Queue = gamer2.queue
             val g1Walk = gamer1.walk
             val g2Walk = gamer2.walk
-
+            val imageView = findViewById<ImageView>(R.id.imageView)
             queue.text = if(g1Queue) g1Name else g2Name
+            imageView.setImageResource(R.drawable.x)
             val r1c1 = findViewById<TextView>(R.id.r1c1)
             val r1c2 = findViewById<TextView>(R.id.r1c2)
             val r1c3 = findViewById<TextView>(R.id.r1c3)
@@ -38,9 +38,7 @@ class Game : AppCompatActivity()  {
             val r3c1 = findViewById<TextView>(R.id.r3c1)
             val r3c2 = findViewById<TextView>(R.id.r3c2)
             val r3c3 = findViewById<TextView>(R.id.r3c3)
-            val imageView = findViewById<ImageView>(R.id.imageView)
             val result = findViewById<Button>(R.id.result)
-            imageView.setImageResource(R.drawable.x)
             fun clear(){
                 r1c1.text = ""
                 r1c2.text = ""
@@ -182,19 +180,26 @@ class Game : AppCompatActivity()  {
                 val intent = Intent(this, GameRes::class.java)
                 intent.putExtra("g1", gamer1)
                 intent.putExtra("g2", gamer2)
-                startActivity(intent)
+                startActivityForResult(intent, 1000)
             }
 
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 
-    private fun showResult(winner: String, g1Name: String, g2Name: String , g1Queue: Boolean, gamer1: User, gamer2: User): Boolean {
+    private fun showResult(winner: String, g1Name: String, g2Name: String, g1Queue: Boolean, gamer1: User, gamer2: User): Boolean {
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        val queue = findViewById<TextView>(R.id.queue)
         return when(winner){
             "X" -> {
                 Toast.makeText(applicationContext, "$g1Name win !!!",
                     Toast.LENGTH_LONG).show()
                 gamer1.result = gamer1.result.append("1")
                 gamer2.result = gamer2.result.append("0")
+                queue.text = gamer1.name
+                imageView.setImageResource(R.drawable.x)
                 true
             }
             "O" -> {
@@ -202,6 +207,8 @@ class Game : AppCompatActivity()  {
                     Toast.LENGTH_LONG).show()
                 gamer1.result = gamer1.result.append("0")
                 gamer2.result = gamer2.result.append("1")
+                queue.text = gamer2.name
+                imageView.setImageResource(R.drawable.o)
                 false
             }
             else ->{
@@ -209,8 +216,8 @@ class Game : AppCompatActivity()  {
                     Toast.LENGTH_LONG).show()
                 gamer1.result = gamer1.result.append("0")
                 gamer2.result = gamer2.result.append("0")
-                val imageView = findViewById<ImageView>(R.id.imageView)
                 if(g1Queue) imageView.setImageResource(R.drawable.x) else imageView.setImageResource(R.drawable.o)
+                if(g1Queue) queue.text = gamer1.name else queue.text = gamer2.name
                 g1Queue
             }
         }

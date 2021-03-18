@@ -8,82 +8,115 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimary"
     android:weightSum="2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:weightSum="10">
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/G1"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="24sp"
-                android:textColor="@color/colorbtn"
-                android:layout_weight="3"
-                android:layout_margin="10dp"/>
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/G1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:textColor="@color/colorbtn"
+                    android:textSize="24sp" />
 
 
-            <ListView
-                android:id="@+id/first_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:cacheColorHint="@color/colorPrimary"
-                android:gravity="center_horizontal"
-                android:layout_weight="5"
-                android:maxHeight="800dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:maxHeight="500dp">
 
-            <TextView
-                android:id="@+id/G1Res"
+                    <ListView
+                        android:id="@+id/first_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="5"
+                        android:cacheColorHint="@color/colorPrimary"
+                        android:gravity="center_horizontal">
+
+                    </ListView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/G1Res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Result 0"
+                    android:textColor="@color/colorbtn" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Result 0"
-                android:textColor="@color/colorbtn"
-                android:layout_weight="2"
-                android:layout_margin="10dp"/>
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/G2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:textColor="@color/colorbtn"
+                    android:textSize="24sp" />
+
+                <ListView
+                    android:id="@+id/second_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="5"
+                    android:gravity="center_horizontal"
+                    android:maxHeight="500dp"/>
+
+                <TextView
+                    android:id="@+id/G2Res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Result 0"
+                    android:textColor="@color/colorbtn" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="10">
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="Back"
+            android:gravity="bottom|center"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/G2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:textColor="@color/colorbtn"
-                android:layout_weight="3"
-                android:layout_margin="10dp"/>
-
-            <ListView
-                android:id="@+id/second_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:maxHeight="800dp"
-                android:layout_weight="5"/>
-
-            <TextView
-                android:id="@+id/G2Res"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Result 0"
-                android:textColor="@color/colorbtn"
-                android:layout_weight="2"
-                android:layout_margin="10dp"/>
-        </LinearLayout>
 </LinearLayout>

@@ -3,6 +3,7 @@ package ruzanna.game.tic_toc
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -49,9 +50,10 @@ class GameRes: AppCompatActivity()  {
             g2Res.text = "Result ${g2Arr.sum()}"
         }
 
-
-
-
+        val back = findViewById<Button>(R.id.back)
+        back.setOnClickListener{
+            finish()
+        }
     }
 }
 
