@@ -13,3 +13,8 @@ Homework 1-2
 
 Tic-tac-toe Ծրագիրը գրել օգտագործելով startActivityForResult() խաղի 2-րդ
 Activity–ից հաղթողի մասին ինֆոն առաջին activity ուղարկելու համար
+
+fragment part
+
+2. Tic-tac-toe Ծրագիրը գրել օգտագործելով fragment խաղի հիմնական ու հաղթողի
+մասին ինֆոն ցուցադրող էջերի համար
