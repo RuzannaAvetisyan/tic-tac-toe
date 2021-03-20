@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
-class GameRes: AppCompatActivity()  {
+class GameResActivity: AppCompatActivity()  {
     @SuppressLint("ResourceType", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +57,7 @@ class GameRes: AppCompatActivity()  {
     }
 }
 
-private fun Array<String>.sum():Int {
+fun Array<String>.sum():Int {
     var s = 0
     for(i in this){
         s += i.toInt()

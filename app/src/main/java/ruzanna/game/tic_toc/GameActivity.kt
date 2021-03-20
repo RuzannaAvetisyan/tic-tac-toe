@@ -2,6 +2,7 @@ package ruzanna.game.tic_toc
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
@@ -10,17 +11,21 @@ import androidx.core.content.ContextCompat
 import java.io.Serializable
 
 
-class Game : AppCompatActivity()  {
-
+class GameActivity : AppCompatActivity() {
+    private val resultFragment = ResultFragment()
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.setContentView(R.layout.game)
+        this.setContentView(R.layout.activity_game)
         val extras = intent.extras
         if (extras != null) {
             val queue = findViewById<TextView>(R.id.queue)
             val gamer1: User = extras.get("g1") as User
             val gamer2: User = extras.get("g2") as User
+            resultFragment.gamer1 = gamer1
+            resultFragment.gamer2 = gamer2
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container, resultFragment, "resultFragment").commit()
             val g1Name = gamer1.name
             val g2Name = gamer2.name
             var g1Queue = gamer1.queue
@@ -177,12 +182,11 @@ class Game : AppCompatActivity()  {
                 }
             }
             result.setOnClickListener{
-                val intent = Intent(this, GameRes::class.java)
+                val intent = Intent(this, GameResActivity::class.java)
                 intent.putExtra("g1", gamer1)
                 intent.putExtra("g2", gamer2)
                 startActivityForResult(intent, 1000)
             }
-
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -194,26 +198,31 @@ class Game : AppCompatActivity()  {
         val queue = findViewById<TextView>(R.id.queue)
         return when(winner){
             "X" -> {
-                Toast.makeText(applicationContext, "$g1Name win !!!",
-                    Toast.LENGTH_LONG).show()
+                //Toast.makeText(applicationContext, "$g1Name win !!!", Toast.LENGTH_LONG).show()
                 gamer1.result = gamer1.result.append("1")
                 gamer2.result = gamer2.result.append("0")
                 queue.text = gamer1.name
                 imageView.setImageResource(R.drawable.x)
+                val bundle = Bundle()
+                bundle.putParcelable("g1", gamer1)
+                bundle.putParcelable("g2", gamer2)
+                resultFragment.test(bundle)
                 true
             }
             "O" -> {
-                Toast.makeText(applicationContext, "$g2Name win !!!",
-                    Toast.LENGTH_LONG).show()
+                //Toast.makeText(applicationContext, "$g2Name win !!!", Toast.LENGTH_LONG).show()
                 gamer1.result = gamer1.result.append("0")
                 gamer2.result = gamer2.result.append("1")
                 queue.text = gamer2.name
                 imageView.setImageResource(R.drawable.o)
+                val bundle = Bundle()
+                bundle.putParcelable("g1", gamer1)
+                bundle.putParcelable("g2", gamer2)
+                resultFragment.test(bundle)
                 false
             }
             else ->{
-                Toast.makeText(applicationContext, "Draw",
-                    Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Draw", Toast.LENGTH_LONG).show()
                 gamer1.result = gamer1.result.append("0")
                 gamer2.result = gamer2.result.append("0")
                 if(g1Queue) imageView.setImageResource(R.drawable.x) else imageView.setImageResource(R.drawable.o)

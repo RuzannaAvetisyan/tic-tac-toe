@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             val secondGamer = User(sName.text.toString().capitalize(),arr, false, "O")
 
             if(fName.text.toString() != "" && sName.text.toString() != ""){
-                val intent = Intent(this, Game::class.java)
+                val intent = Intent(this, GameActivity::class.java)
                 intent.putExtra("g1", firstGamer)
                 intent.putExtra("g2", secondGamer)
                 startActivity(intent)
