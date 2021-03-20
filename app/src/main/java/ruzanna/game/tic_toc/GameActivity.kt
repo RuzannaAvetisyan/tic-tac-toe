@@ -192,7 +192,6 @@ class GameActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
-
     private fun showResult(winner: String, g1Name: String, g2Name: String, g1Queue: Boolean, gamer1: User, gamer2: User): Boolean {
         val imageView = findViewById<ImageView>(R.id.imageView)
         val queue = findViewById<TextView>(R.id.queue)
